@@ -20,7 +20,7 @@ RUN yum install -y redis
 RUN yum install -y erlang \
   && rpm --import http://www.rabbitmq.com/rabbitmq-signing-key-public.asc \
   && rpm -Uvh http://www.rabbitmq.com/releases/rabbitmq-server/v3.1.4/rabbitmq-server-3.1.4-1.noarch.rpm \
-  && git clone git://github.com/joemiller/joemiller.me-intro-to-sensu.git \
+  && git clone https://github.com/joemiller/joemiller.me-intro-to-sensu.git \
   && cd joemiller.me-intro-to-sensu/; ./ssl_certs.sh clean && ./ssl_certs.sh generate \
   && mkdir /etc/rabbitmq/ssl \
   && cp /joemiller.me-intro-to-sensu/server_cert.pem /etc/rabbitmq/ssl/cert.pem \
@@ -51,4 +51,3 @@ RUN /etc/init.d/sshd start && /etc/init.d/sshd stop
 EXPOSE 22 3000 4567 5671 15672
 
 CMD ["/usr/bin/supervisord"]
-
